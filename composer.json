@@ -1,0 +1,36 @@
+{
+    "name": "greshnik/yii2-grid-sort-column",
+    "description": "Bootstrap Grid Sort Column Widget for Yii2",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii",
+        "yii2",
+        "yii 2",
+        "extension",
+        "widget"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Bogdan Lipovtsev",
+            "email": "seclan@mail.ru",
+            "homepage": "http://bogdanonline.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0",
+        "yiisoft/yii2-bootstrap": "~2.0.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "asset-installer-paths": {
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
