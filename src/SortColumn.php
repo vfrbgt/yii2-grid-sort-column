@@ -22,28 +22,37 @@ class SortColumn extends Column
     {
         parent::init();
         $view = $this->grid->getView();
-        $script = '$(document).ready(function(){
-                $(\'.sort-up\').on(\'click\', function(){
-                    var element = $(this).parent().parent();
-                    var id1 = element.attr(\'data-key\');
-                    var id2 = element.prev().attr(\'data-key\');
-                    element.prev().before(element);
-                    $.ajax({
-                        url: "'.Url::toRoute(['swap']).'?idFrom="+id1+"&idTo="+id2
-                    });
-                    return false;
+        $script = '
+        $(document).ready(function(){
+            function hideFirstLast() {
+                $(\'.sort-up, .sort-down\').show();
+                $(\'.sort-up\').first().hide();
+                $(\'.sort-down\').last().hide();
+            }
+            $(\'.sort-up\').on(\'click\', function(){
+                var element = $(this).parent().parent();
+                var id1 = element.attr(\'data-key\');
+                var id2 = element.prev().attr(\'data-key\');
+                element.prev().before(element);
+                hideFirstLast();
+                $.ajax({
+                    url: "'.Url::toRoute(['swap']).'?idFrom="+id1+"&idTo="+id2
                 });
-                $(\'.sort-down\').on(\'click\' ,function(){
-                    var element = $(this).parent().parent();
-                    var id1 = element.attr(\'data-key\');
-                    var id2 = element.next().attr(\'data-key\');
-                    element.next().after(element);
-                    $.ajax({
-                        url: "'.Url::toRoute(['swap']).'?idFrom="+id1+"&idTo="+id2
-                    });
-                    return false;
+                return false;
+            });
+            $(\'.sort-down\').on(\'click\' ,function(){
+                var element = $(this).parent().parent();
+                var id1 = element.attr(\'data-key\');
+                var id2 = element.next().attr(\'data-key\');
+                element.next().after(element);
+                hideFirstLast();
+                $.ajax({
+                    url: "'.Url::toRoute(['swap']).'?idFrom="+id1+"&idTo="+id2
                 });
-            });';
+                return false;
+            });
+            hideFirstLast();
+        });';
         $view->registerJs($script);
     }
 
