@@ -9,145 +9,51 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-composer require 2amigos/yii2-date-picker-widget:~1.0
+composer require greshnik/yii2-grid-sort-column:~1.0
 ```
 or add
 
 ```json
-"2amigos/yii2-date-picker-widget" : "~1.0"
+"greshnik/yii2-grid-sort-column" : "~1.0"
 ```
 
 to the require section of your application's `composer.json` file.
 
 Usage
 -----
-The widget comes in two flavors: 
 
-- DatePicker
-- DateRangePicker
-
-**DatePicker**
-
-This widget renders a Bootstrap DatePicker input control. Best suitable for model with date string attribute.
-
-***Example of use with a form***  
-There are two ways of using it, with an `ActiveForm` instance or as a widget setting up its `model` and `attribute`.
+***Example***
 
 ```
-<?php
-use dosamigos\datepicker\DatePicker;
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
 
-// as a widget
-?>
+        'id',
+        'name',
+        'class',
 
-<?= DatePicker::widget([
-    'model' => $model,
-    'attribute' => 'date',
-    'template' => '{addon}{input}',
-        'clientOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
+        ['class' => 'yii\grid\ActionColumn'],
+        ['class' => 'app\gridSortColumn\SortColumn']
+    ],
+]); ?>
+```  
+***Example add sort action in controller***
+
+```  
+public function actions()
+{
+    return [
+        'swap' => [
+            'class' => 'app\gridSortColumn\Swap',
+            'model' => new Mark,
+            'attribute' => 'name'
         ]
-]);?>
-
-<?php 
-// with an ActiveForm instance 
-?>
-<?= $form->field($model, 'date')->widget(
-    DatePicker::className(), [
-        // inline too, not bad
-         'inline' => true, 
-         // modify template for custom rendering
-        'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
-        'clientOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-]);?>
-```  
-***Example of use without a model***
-
-```  
-<?php
-use dosamigos\datepicker\DatePicker;
-?>
-<?= DatePicker::widget([
-    'name' => 'Test',
-    'value' => '02-16-2012',
-    'template' => '{addon}{input}',
-        'clientOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-]);?>
+    ];
+}
 ```
-**DateRangePicker**  
-
-This widget renders a Bootstrap DateRangePicker Input control. 
-
-***Example of use with a form***  
-The following example works with a model that has two attributes named `date_from` and `date_to`.
-
-```
-<?php
-use dosamigos\datepicker\DateRangePicker;
-?>
-<?= $form->field($tour, 'date_from')->widget(DateRangePicker::className(), [
-    'attributeTo' => 'date_to', 
-    'form' => $form, // best for correct client validation
-    'language' => 'es',
-    'size' => 'lg',
-    'clientOptions' => [
-        'autoclose' => true,
-        'format' => 'dd-M-yyyy'
-    ]
-]);?>
-```  
-***Example of use without a model***
-
-```  
-<?php
-use dosamigos\datepicker\DateRangePicker;
-?>
-<?= DateRangePicker::widget([
-    'name' => 'date_from',
-    'value' => '02-16-2012',
-    'nameTo' => 'name_to',
-    'valueTo' => '02-20-2012'
-]);?>
-```
-
-Testing
--------
-
-To test the extension, is better to clone this repository on your computer. After, go to the extensions folder and do
-the following (assuming you have `composer` installed on your computer): 
-
-```bash 
-$ composer install --no-interaction --prefer-source --dev
-```
-Once all required libraries are installed then do: 
-
-```bash 
-$ vendor/bin/phpunit
-```
-
-I would recommend to have `phpunit` globally installed together with `xdebug` so you can have code coverage analysis too.
-
-Further Information
--------------------
-Please, check the [Bootstrap DatePicker site](http://bootstrap-datepicker.readthedocs.org/en/release/) documentation for further information about its configuration options. 
-
-Contributing
-------------
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-Credits
--------
-
-- [Antonio Ramirez](https://github.com/tonydspaniard)
-- [All Contributors](../../contributors)
 
 License
 -------
