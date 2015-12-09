@@ -9,12 +9,12 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-composer require greshnik/yii2-grid-sort-column:~1.0
+composer require greshnik/yii2-grid-sort-column:~*
 ```
 or add
 
 ```json
-"greshnik/yii2-grid-sort-column" : "~1.0"
+"greshnik/yii2-grid-sort-column" : "*"
 ```
 
 to the require section of your application's `composer.json` file.
@@ -49,7 +49,7 @@ public function actions()
         'swap' => [
             'class' => 'app\gridSortColumn\Swap',
             'model' => new Mark,
-            'attribute' => 'name'
+            'attribute' => 'sortAttribute'
         ]
     ];
 }
