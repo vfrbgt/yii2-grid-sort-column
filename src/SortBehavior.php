@@ -6,7 +6,7 @@ use yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 
-class Slug extends Behavior
+class SortBehavior extends Behavior
 {
     public $attribute;
     public $model;
