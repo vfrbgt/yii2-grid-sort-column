@@ -28,16 +28,5 @@
             "src/SortColumn",
             "src/Swap"
         ]
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.*"
-    },
-    "extra": {
-        "branch-alias": {
-            "master": "1.0"
-        },
-        "asset-installer-paths": {
-            "bower-asset-library": "vendor/bower"
-        }
     }
 }
