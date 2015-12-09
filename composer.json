@@ -2,7 +2,6 @@
     "name": "greshnik/yii2-grid-sort-column",
     "description": "Bootstrap Grid Sort Column Widget for Yii2",
     "type": "yii2-extension",
-    "version": "1.0.0",
     "keywords": [
         "yii",
         "yii2",
