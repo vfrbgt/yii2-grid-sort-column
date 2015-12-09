@@ -9,7 +9,6 @@ use yii\db\ActiveRecord;
 class SortBehavior extends Behavior
 {
     public $attribute;
-    public $model;
 
     public function events()
     {
