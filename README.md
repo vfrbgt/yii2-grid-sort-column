@@ -55,6 +55,20 @@ public function actions()
 }
 ```
 
+***Example add behavior in model***
+
+```
+public function behaviors()
+{
+    return [
+        'sort' => [
+            'class' => 'app\gridSortColumn\SortBehavior',
+            'attribute' => 'sort'
+        ]
+    ];
+}
+```
+
 License
 -------
 
